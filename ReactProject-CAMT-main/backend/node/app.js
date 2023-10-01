@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
-const routes = require('./routes/products');
+const basketRoute = require('./Routes/basket');
+// const routes = require('./Routes');
 const morgan = require('morgan');
 
 app.use(morgan('tiny'));
@@ -8,7 +9,8 @@ app.use(morgan('tiny'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/products', routes);
+// app.use('/products', routes);
+app.use('/basket', basketRoute);
 
 
 //create server
