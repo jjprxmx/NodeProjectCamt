@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // app.use('/products', routes);
-app.use('/basket', basketRoute);
+app.use('/user', basketRoute);
 
 
 //create server

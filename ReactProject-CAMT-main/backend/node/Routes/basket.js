@@ -1,10 +1,11 @@
 const express = require('express');
-const novelData = require('../novelData');
+// const novelData = require('../novelData');
+const userData = require('../userData');
 const router = express.Router();
 
 router.get('/', (req, res) => {
     try {
-        res.status(200).json(novelData);
+        res.status(200).json(userData);
     } catch (err) {
         console.error(err);
         res.status(500).send('Internal Server Error');
@@ -12,34 +13,87 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-    const productId = Number.parseInt(req.params.id);
-    const product = novelData.find((product) => product.id === productId)
-    res.status(200).json(product);
+    const ID = Number.parseInt(req.params.id);
+    const user = userData.find((user) => user.id === ID)
+    if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+    }
+    res.status(200).json(user);
 })
 
-router.delete('/:id', (req, res) => {
-    const productId = Number.parseInt(req.params.id);
-    const product = novelData.find((product) => product.id === productId)
-    novelData.delete(product);
-    res.status(204);
-});
+router.get('/:id/basket', (req, res) => {
+    const ID = Number.parseInt(req.params.id);
+    const user = userData.find((user) => user.id === ID)
+    if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+    }
+    res.status(200).json(user.basket);
+})
 
+router.get('/:id/basket/:itemID', (req, res) => {
+    const ID = Number.parseInt(req.params.id);
+    const user = userData.find((user) => user.id === ID)
+
+    if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+    }
+
+    const itemID = Number.parseInt(req.params.itemID);
+    const item = user.basket.find((basket) => basket.id === itemID);
+
+    if (!item) {
+        return res.status(404).json({ message: 'Item not found in user basket' });
+    }
+
+    res.status(200).json(item);
+})
+
+// never test, never want to try, I can, I just don't want to
+router.delete('/:id/basket/:itemID', (req, res) => {
+    const ID = Number.parseInt(req.params.id);
+    const user = userData.find((user) => user.id === ID)
+
+    if (user === -1) {
+        return res.status(404).json({ message: 'User not found' });
+    }
+
+    const itemID = Number.parseInt(req.params.itemID);
+    const item = user.basket.find((basket) => basket.id === itemID);
+
+    if (item === -1) {
+        return res.status(404).json({ message: 'Item not found in user basket' });
+    }
+    
+    user.basket.splice(item, 1);
+
+    res.status(204).send();
+})
+
+// not working yet, need data from order
 let currentProductId = 0;
-for (const product of novelData) {
+for (const product of userData) {
     if (product.id > currentProductId) {
         currentProductId = product.id;
     }
 }
-router.post('/', (req, res) => {
-    // When creating the product, make sure to increase the currentProductId by 1
-    const { name, imgURL, type } = req.body
+router.post('/:id', (req, res) => {
+    const ID = Number.parseInt(req.params.id);
+    const user = userData.find((user) => user.id === ID)
+
+    if (user === -1) {
+        return res.status(404).json({ message: 'User not found' });
+    }
+
+    user.basket.push(currentProductId);
+    const { name, author, category, imgUrl } = req.body
     const product = {
         id: ++currentProductId,
         name: name,
-        imgURL: imgURL,
-        type: type
+        author: author,
+        category: category,
+        imgUrl: imgUrl
     }
-    novelData.push(product);
+    userData.push(product);
     res.status(200).json(product);
 });
 
