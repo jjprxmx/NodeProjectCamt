@@ -9,8 +9,9 @@ router.get('/', (req, res) => {
     return service.getAllUsers(req, res);
 })
 
-router.get('/:id', (req, res) => {
-    return service.getById(req, res);
+router.get('/:id', async (req, res) => {
+    const basket = await service.getBasket(req, res);
+    return basket;
 })
 
 router.get('/:id/basket', (req, res) => {

@@ -8,22 +8,30 @@ function getAllUsers(req, res) {
     }
 }
 
-function getById(req, res) {
-    const ID = Number.parseInt(req.params.id);
-    const user = userData.find((user) => user.id === ID)
-    if (!user) {
-        return res.status(404).json({ message: 'User not found' });
+async function getById(req, res) {
+    try {
+        const user = await userData.findOne({ id: req.params.id });
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.status(200).json(user);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
     }
-    res.status(200).json(user);
 }
 
-function getBasket(req, res) {
-    const ID = Number.parseInt(req.params.id);
-    const user = userData.find((user) => user.id === ID)
-    if (!user) {
-        return res.status(404).json({ message: 'User not found' });
+async function getBasket(req, res) {
+    try {
+        const user = await userData.findOne({ id: req.params.id });
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.status(200).json(user.basket);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
     }
-    res.status(200).json(user.basket);
 }
 
 function getItem(req, res) {
@@ -58,7 +66,7 @@ function deleteItem(req, res) {
     if (item === -1) {
         return res.status(404).json({ message: 'Item not found in user basket' });
     }
-    
+
     user.basket.splice(item, 1);
 
     res.status(204).send();
