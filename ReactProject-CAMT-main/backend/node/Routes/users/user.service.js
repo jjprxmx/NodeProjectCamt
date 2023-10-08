@@ -5,7 +5,6 @@ const Users = require('../../model/Users');
 async function checkUsers(req, res) {
 
     try {
-        //const user = Users.find((user) => user.username === username && user.password === password);
         const user = await Users.findOne({
            where: {
                 username: req.body.username,
