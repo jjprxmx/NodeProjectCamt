@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const router = require('./Routes/users/user.routes');
+const userRouter = require('./Routes/users/user.routes');
 const {connect, sync} = require('./config/database');
 // const routes = require('./Routes');
 const morgan = require('morgan');
@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // app.use('/products', routes);
-app.use('/user', router);
+app.use('/users', userRouter);
 
 
 //create server
