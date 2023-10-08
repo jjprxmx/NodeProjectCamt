@@ -1,7 +1,7 @@
 const express = require('express');
 const service = require('./basket.service')
 
-const userData = require('../userData');
+const userData = require('../../userData');
 
 const router = express.Router();
 

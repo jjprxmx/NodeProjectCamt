@@ -1,4 +1,4 @@
-const userData = require('../userData');
+const userData = require('../../userData');
 function getAllUsers(req, res) {
     try {
         res.status(200).json(userData);
