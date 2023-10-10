@@ -1,22 +1,20 @@
 
-const Sequelize = require('sequelize');
-const sequelize = require('../config/database'); // Adjust the path as needed
+const {Sequelize} = require('sequelize');
+const {sequelize }= require('../config/database'); // Adjust the path as needed
 
-// Define the "Review" model
-const Review = sequelize.define('Review', {
-  id: {
-    type: Sequelize.INTEGER,
-  },
+// Define the "Review" model "reviews" is name of table in database
+const Review = sequelize.define("reviews", 
+{     
   id_user: {
     type: Sequelize.INTEGER,
   },
   id_novel: {
     type: Sequelize.INTEGER,
   },
-  detail: {
+  details: {
     type: Sequelize.TEXT,
   },
-  numlike: {
+  num_like: {
     type: Sequelize.INTEGER,
   },
 });

@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const userRouter = require('./Routes/users/user.routes');
+const reviewRouter = require('./Routes/reviews/review.routes');
 const {connect, sync} = require('./config/database');
 // const routes = require('./Routes');
 const morgan = require('morgan');
@@ -19,7 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // app.use('/products', routes);
 app.use('/users', userRouter);
-
+app.use('/reviews', reviewRouter);
 
 //create server
 app.listen(3000, () => {
