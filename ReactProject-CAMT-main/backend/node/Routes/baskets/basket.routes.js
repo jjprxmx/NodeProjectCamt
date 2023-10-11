@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-    const basket = await service.getBasket(req, res);
+    const basket = await service.getById(req, res);
     return basket;
 })
 
