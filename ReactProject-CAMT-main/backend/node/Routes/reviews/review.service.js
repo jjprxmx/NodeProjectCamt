@@ -8,7 +8,7 @@ async function getReview (req,res){
             id_novel:req.params.id,
         }
     })
-    res.send(Review.id_novel)
+    res.send(review.id_novel)
 }
 
 
@@ -19,7 +19,7 @@ async function getReviewbyidnovel(req, res) {
         detail:req.params.idReview
     }
   });
-  res.send(Review.detail);
+  res.send(review.detail);
 }
 
 async function addReview(req, res) {
