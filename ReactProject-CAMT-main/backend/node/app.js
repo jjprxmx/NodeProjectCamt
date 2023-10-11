@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 const basketRoute = require('./Routes/basket.routes');
-const novelRouter = require('./novels/novels.routes');
+const novelRouter = require('./Routes/novels/novels.routes');
 
 const userRouter = require('./Routes/users/user.routes');
 const reviewRouter = require('./Routes/reviews/review.routes');

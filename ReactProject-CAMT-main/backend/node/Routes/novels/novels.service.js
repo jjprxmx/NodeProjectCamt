@@ -1,4 +1,4 @@
-const novelData = require('../novelData');
+const novelData = require('../../novelData');
 
 function findAllNovel(req,res){
     try{
