@@ -1,78 +1,68 @@
-const userData = require('../../userData');
-function getAllUsers(req, res) {
-    try {
-        res.status(200).json(userData);
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Internal Server Error');
-    }
-}
+const express = require('express');
 
-async function getById(req, res) {
-    const ID = Number.parseInt(req.params.id);
-    const user = userData.find((user) => user.id === ID)
+const basketData = require('../../model/Basket');
+// const usersData = require('../../model/Users');
+// const novelsData = require('../../model/Novels');
+const { data } = require('../../config/database');
 
-    if (!user) {
-        return res.status(404).json({ message: 'User not found' });
-    }
-    res.status(200).json(user);
-}
+// async function getAllUsers(req, res) {
+//     const basket = await Baskets.findAll();
+//     res.status(200).send(basket);
+// }
+
+// async function getById(req, res) {
+//     const ID = Number.parseInt(req.params.id);
+//     const user = userData.find((user) => user.id === ID)
+
+//     if (!user) {
+//         return res.status(404).json({ message: 'User not found' });
+//     }
+//     res.status(200).json(user);
+// }
 
 async function getBasket(req, res) {
-    try {
-        const user = await userData.findOne({ id: req.params.id });
-        if (!user) {
-            return res.status(404).json({ message: 'User not found' });
+    const basket = await basketData.find({
+        where: {
+            id_user: req.params.id
         }
-        res.status(200).json(user.basket);
-    } catch (error) {
-        console.error('Error:', error);
-        res.status(500).json({ message: 'Internal Server Error' });
-    }
+    });
+    res.send(basket.id_user);
 }
 
-function getItem(req, res) {
-    const ID = Number.parseInt(req.params.id);
-    const user = userData.find((user) => user.id === ID)
-
-    if (!user) {
-        return res.status(404).json({ message: 'User not found' });
-    }
-
-    const itemID = Number.parseInt(req.params.itemID);
-    const item = user.basket.find((basket) => basket.id === itemID);
-
-    if (!item) {
-        return res.status(404).json({ message: 'Item not found in user basket' });
-    }
-
-    res.status(200).json(item);
+async function getItem(req, res) {
+    const basket = await basketData.find({
+        where: {
+            id_user: req.params.id,
+            id_novel: req.params.itemID
+        }
+    });
+    res.send(basket.id_novel);
 }
 
-function deleteItem(req, res) {
-    const ID = Number.parseInt(req.params.id);
-    const user = userData.find((user) => user.id === ID)
+async function deleteItem(req, res) {
+    await basketData.destroy({
+        where: {
+            id_user: req.params.id,
+            id_novel: req.params.itemID
+        }
+    });
+    res.sendStatus(204);
+}
 
-    if (user === -1) {
-        return res.status(404).json({ message: 'User not found' });
-    }
-
-    const itemID = Number.parseInt(req.params.itemID);
-    const item = user.basket.find((basket) => basket.id === itemID);
-
-    if (item === -1) {
-        return res.status(404).json({ message: 'Item not found in user basket' });
-    }
-
-    user.basket.splice(item, 1);
-
-    res.status(204).send();
+async function addItem(req, res) {
+    const { id_user, id_novel } = req.body
+    const basket = await basketData.create({
+        id_user,
+        id_novel
+    })
+    res.json(basket);
 }
 
 module.exports = {
-    getAllUsers,
-    getById,
+    // getAllUsers,
+    // getById,
     getBasket,
     getItem,
     deleteItem,
+    addItem
 };

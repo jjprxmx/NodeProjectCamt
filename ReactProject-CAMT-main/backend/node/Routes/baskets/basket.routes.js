@@ -5,14 +5,14 @@ const userData = require('../../userData');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    return service.getAllUsers(req, res);
-})
+// router.get('/', (req, res) => {
+//     return service.getAllUsers(req, res);
+// })
 
-router.get('/:id', async (req, res) => {
-    const basket = await service.getBasket(req, res);
-    return basket;
-})
+// router.get('/:id', async (req, res) => {
+//     const basket = await service.getBasket(req, res);
+//     return basket;
+// })
 
 router.get('/:id/basket', async (req, res) => {
     return await service.getBasket(req, res);
