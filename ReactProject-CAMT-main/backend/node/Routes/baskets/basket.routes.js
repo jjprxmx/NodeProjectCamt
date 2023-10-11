@@ -10,12 +10,12 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-    const basket = await service.getById(req, res);
+    const basket = await service.getBasket(req, res);
     return basket;
 })
 
-router.get('/:id/basket', (req, res) => {
-    return service.getBasket(req, res);
+router.get('/:id/basket', async (req, res) => {
+    return await service.getBasket(req, res);
 })
 
 router.get('/:id/basket/:itemID', (req, res) => {

@@ -9,16 +9,13 @@ function getAllUsers(req, res) {
 }
 
 async function getById(req, res) {
-    try {
-        const user = await userData.findOne({ id: req.params.id });
-        if (!user) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-        res.status(200).json(user);
-    } catch (error) {
-        console.error('Error:', error);
-        res.status(500).json({ message: 'Internal Server Error' });
+    const ID = Number.parseInt(req.params.id);
+    const user = userData.find((user) => user.id === ID)
+
+    if (!user) {
+        return res.status(404).json({ message: 'User not found' });
     }
+    res.status(200).json(user);
 }
 
 async function getBasket(req, res) {
