@@ -3,18 +3,18 @@ const router = express.Router();
 const service = require('./review.service')
 
 router.get ('/',(req,res) => {
-    res.json(data)
+    return service.getReview(req,res)
 })
 
-router.get('/:id_novel/reviews/:id', async (req, res) => {
-  return service.getReview(req,res);
+router.get('/:id/reviews/:idReview', async (req, res) => {
+  return service.getReviewbyidnovel(req,res);
 });
 
-router.post('/', async (req, res) => {
+router.post('/:id', async (req, res) => {
+  const id = Number.parseInt(req.params.id);
+  const novel = novel.find((novel) => novel.id === id)
   try {
     const { id_user, id_novel, detail, numlike } = req.body;
-
-
     const newReview = await Review.create({
       id_user,
       id_novel,

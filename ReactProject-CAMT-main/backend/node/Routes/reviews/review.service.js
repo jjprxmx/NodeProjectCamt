@@ -1,36 +1,41 @@
 const express = require('express');
 const router = express.Router();
 const Review = require('../../model/Review');
-const userData = require('../../userData');
 
-
-async function getReview(req, res) {
-  const novelId = Number.parseInt(req.params.id_novel);
-  const reviewId = Number.parseInt(req.params.id);
-
-  try {
-    const novel = await userData.findByid(novelId);
-
-    if (!novel) {
-      return res.status(404).json({ message: 'Novel not found' });
-    }
-
-    const review = await Review.findOne({
-      where: { id: reviewId, id_novel: novelId },
-    });
-
-    if (!review) {
-      return res.status(404).json({ message: 'Review not found' });
-    }
-
-    res.json(review.detail);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
+async function getReview (req,res){
+    const review = await Review.find({
+        where:{
+            id_novel:req.params.id,
+        }
+    })
+    res.send(Review.id_novel)
 }
 
+
+async function getReviewbyidnovel(req, res) {
+  const review = await Review.find({
+    where:{
+        id_novel:req.params.id,
+        detail:req.params.idReview
+    }
+  });
+  res.send(Review.detail);
+}
+
+async function addReview(req, res) {
+    const { id_user, id_novel, detail, } = req.body;
+    const review = await basketData.create({
+        id_user,
+        id_novel,
+        detail
+    })
+    res.json(review);
+}
+
+
+
 module.exports = {
+    getReviewbyidnovel,
     getReview,
-    
+    addReview
 };

@@ -2,7 +2,7 @@ const ordersData = require('../../model/Orders');
 function getAllOrders(req, res) {
     try {
         res.status(200).json(ordersData);
-    } catch (err) {
+    } catch (err) { 
         console.error(err);
         res.status(500).send('Internal Server Error');
     }
