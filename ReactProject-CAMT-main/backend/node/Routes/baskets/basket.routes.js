@@ -4,6 +4,10 @@ const service = require('./basket.service')
 
 const router = express.Router();
 
+router.get('/', async (req, res) => {
+    return await service.getAllBasket(req, res);
+})
+
 router.get('/:id_user/basket', async (req, res) => {
     return await service.getBasket(req, res);
 })

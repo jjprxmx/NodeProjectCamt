@@ -3,6 +3,11 @@ const express = require('express');
 const Basket = require('../../model/Basket');
 const { data } = require('../../config/database');
 
+async function getAllBasket(req, res) {
+    const basket = await Basket.findAll();
+    res.send(basket);
+}
+
 async function getBasket(req, res) {
     const basket = await Basket.findOne({
         id_user: req.params.id 
@@ -40,6 +45,7 @@ async function addItem(req, res) {
 }
 
 module.exports = {
+    getAllBasket,
     getBasket,
     getItem,
     deleteItem,
