@@ -28,9 +28,10 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/user', basketRoute);
 app.use('/novel', novelRouter);
-app.use('/users', userRouter);
 app.use('/reviews', reviewRouter);
-app.use('/orders', ordersRouter);
+
+app.use('/users', ordersRouter);
+app.use('/auth', userRouter);
 //create server
 app.listen(3000, () => {
     console.log('Listening on port 3000');

@@ -1,6 +1,6 @@
 const express = require('express');
 
-const basketData = require('../../model/Basket');
+const {basketData} = require('../../model/Basket');
 // const usersData = require('../../model/Users');
 // const novelsData = require('../../model/Novels');
 const { data } = require('../../config/database');

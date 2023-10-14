@@ -35,7 +35,7 @@ const App = () => {
   const { data } = useFetch(Api_Novel);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_PREME}/api/user/checkcookie`,{    
+    fetch(`${process.env.REACT_APP_API_PREME}/auth/`,{    
       method:"POST",
       credentials: 'include',
       headers:{
