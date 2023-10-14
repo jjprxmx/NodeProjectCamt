@@ -1,7 +1,7 @@
-const ordersData = require('../../model/Orders');
+const Orders = require('../../model/Orders');
 function getAllOrders(req, res) {
     try {
-        res.status(200).json(ordersData);
+        res.status(200).json(Orders);
     } catch (err) { 
         console.error(err);
         res.status(500).send('Internal Server Error');
@@ -10,7 +10,7 @@ function getAllOrders(req, res) {
 
 async function getOrdersById(req, res) {
     try {
-        const orders = await ordersData.findOne({ id: req.params.id });
+        const orders = await Orders.findOne({id_user: req.params.id });
         if (!orders) {
             return res.status(404).json({ message: 'User not found' });
         }

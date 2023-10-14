@@ -41,7 +41,7 @@ const NovelPage = ({ className, idNovel, handlePrefixChange }) => {
   const reviews = useSelector((state) => state.review.review);
 
   // pull id from novel
-  const { id } = useParams();
+  const { id } = useParams(); 
 
   //post
   const [formData, setFormData] = useState({
@@ -49,7 +49,7 @@ const NovelPage = ({ className, idNovel, handlePrefixChange }) => {
     body: "",
   });
   //Api
-  const Api_Novel = `/novels/${id}`;
+  const Api_Novel = `/novels/${id}`; // get novel by id
   const { data } = useFetch(Api_Novel);
 
   //post

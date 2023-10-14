@@ -31,7 +31,7 @@ const App = () => {
     setSearchResults(dataArray);
   };
 
-  const Api_Novel = "/novels";
+  const Api_Novel = "/novels" ; // get all
   const { data } = useFetch(Api_Novel);
 
   useEffect(() => {
