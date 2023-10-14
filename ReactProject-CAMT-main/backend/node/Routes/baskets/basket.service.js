@@ -1,4 +1,24 @@
-const Basket = require('../../model/Basket');
+const express = require('express');
+
+const {basketData} = require('../../model/Basket');
+// const usersData = require('../../model/Users');
+// const novelsData = require('../../model/Novels');
+const { data } = require('../../config/database');
+
+// async function getAllUsers(req, res) {
+//     const basket = await Baskets.findAll();
+//     res.status(200).send(basket);
+// }
+
+// async function getById(req, res) {
+//     const ID = Number.parseInt(req.params.id);
+//     const user = userData.find((user) => user.id === ID)
+
+//     if (!user) {
+//         return res.status(404).json({ message: 'User not found' });
+//     }
+//     res.status(200).json(user);
+// }
 
 async function getBasket(req, res) {
     const basket = await Basket.findOne({

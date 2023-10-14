@@ -5,7 +5,7 @@ const sequelize = new Sequelize(
     'premesocute', // Username
     'nodeproject9999', // Password
     {
-      host: '192.168.0.100', // Connect to your local database otherwise use 61.7.143.204
+      host: '61.7.143.204', // Connect to your local database otherwise use 61.7.143.204
       dialect: 'mysql' // Tell sequelize to use Postgres
     }
   );
@@ -20,7 +20,6 @@ const sequelize = new Sequelize(
     }
   }
   
-
 async function sync() { 
     try {
     await sequelize.sync();
@@ -34,8 +33,9 @@ async function sync() {
 ); }
 }
 
+
 module.exports = {
-    sequelize,
-    connect,
-    sync
-}
+  sequelize,
+  connect,
+  sync
+};
