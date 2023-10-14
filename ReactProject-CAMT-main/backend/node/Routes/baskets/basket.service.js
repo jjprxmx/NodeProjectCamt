@@ -5,9 +5,7 @@ const { data } = require('../../config/database');
 
 async function getBasket(req, res) {
     const basket = await Basket.findOne({
-        where: {
-            id_user: req.params.id_user
-        }
+        id_user: req.params.id 
     });
     res.send(basket);
 }
