@@ -8,7 +8,15 @@ const Basket = sequelize.define("basket",
     },
     id_novel: {
       type: DataTypes.INTEGER,
-    }
+    },
+    createAt:{
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    updateAt:{
+      type: DataTypes.DATE,
+      allowNull: false
+    },
   });
   
 
