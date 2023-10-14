@@ -31,7 +31,9 @@ app.use('/user', basketRoute);
 app.use('/novels', novelRouter);
 app.use('/users', userRouter);
 app.use('/reviews', reviewRouter);
-app.use('/orders', ordersRouter);
+
+app.use('/users', ordersRouter);
+app.use('/auth', userRouter);
 //create server
 app.listen(3000, () => {
     console.log('Listening on port 3000');

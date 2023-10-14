@@ -131,7 +131,7 @@ function Login(isOpen) {
   };
 
   const checkUser =() => {
-    fetch(`${process.env.REACT_APP_API_PREME}/api/user/`,{    
+    fetch(`${process.env.REACT_APP_API_PREME}/auth/login`,{    
       method:"POST",
       credentials: 'include',
       headers:{

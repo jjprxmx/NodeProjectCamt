@@ -12,4 +12,8 @@ router.get ('/:id' , (req,res) =>{
     return service.getOrdersById(req, res);
 });
 
+router.post ('/' , (req,res) =>{
+    return service.addOrder(req, res);
+});
+
 module.exports = router;

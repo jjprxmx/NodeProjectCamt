@@ -22,6 +22,41 @@ async function checkUsers(req, res) {
     }
 }
 
+async function checkCokkie(req,res)
+{
+
+    if(!req.cookies.id){
+      return res.status(400).json({
+        status: 'Failed',
+        message: 'No data',
+      });
+    }
+    try{
+
+      const connection = await Users.findOne({
+        where: {
+          id: req.cookies.id
+        }
+      })
+
+      if(!connection){
+        return res.status(400).json({
+          status: 'Failed',
+          message: 'No data',
+        })
+      }
+
+      res.json(connection)
+
+    }
+    catch(err){
+      res.json("error")
+    }
+}
+  
+
+
 module.exports = {
-    checkUsers
+    checkUsers,
+    checkCokkie
 }
