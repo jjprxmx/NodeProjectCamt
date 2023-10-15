@@ -15,4 +15,10 @@ router.post('/', (req,res) => {
     return service.createNovel(req, res);
 });
 
+router.get('/search/:debouncedPrefix', (req, res) => {
+    const keyword = req.params.keyword;
+    const searchResults = searchService.searchNovels(keyword); // ใช้ฟังก์ชันการค้นหาของคุณ
+    res.json(searchResults);
+  });
+
 module.exports = router;

@@ -14,7 +14,7 @@ const Search = ({ size, onSearchResults }) => {
   const inputStyle = { ...style, width: size };
   const [prefix, setPrefix] = useState("");
   const [debouncedPrefix, setDebouncedPrefix] = useState("");
-  const Api_Novel = `${process.env.REACT_APP_API_PREME}/novels/${debouncedPrefix}`;
+  const Api_Novel = `${process.env.REACT_APP_API_PREME}/novels/search/${debouncedPrefix}`;
   const { data } = useFetch(Api_Novel);
 
   useEffect(() => {

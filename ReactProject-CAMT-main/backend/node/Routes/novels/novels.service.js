@@ -59,11 +59,29 @@ async function createNovel(req, res) {
   }
 }
 
+async function searchNovels(keyword) {
+  try {
+    
+    const novels = await Novels.findAll({
+      where: {
+        name: {
+          [Op.like]: `%${keyword}%`
+        }
+      }
+    });
+
+    return novels;
+  } catch (error) {
+    console.error("Error searching novels:", error);
+    throw new Error("Error searching novels");
+  }
+}
 
 module.exports = {
   findAllNovel,
   findNovelById,
   createNovel,
+  searchNovels
 };
 
 
