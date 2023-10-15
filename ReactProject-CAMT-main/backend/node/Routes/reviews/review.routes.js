@@ -12,21 +12,20 @@ router.get('/:id/reviews/:idReview', async (req, res) => {
 
 router.post('/:id', async (req, res) => {
   const id = Number.parseInt(req.params.id);
-  const novel = novel.find((novel) => novel.id === id)
-  try {
-    const { id_user, id_novel, detail, numlike } = req.body;
-    const newReview = await Review.create({
-      id_user,
-      id_novel,
-      detail,
-      numlike,
-    });
+  const novel = novel.find((novel) => novel.id === id);
 
+  if (!novel) {
+    return res.status(404).json({ message: 'Novel not found' });
+  }
+
+  const { id_user, id_novel, detail, numlike } = req.body;
+
+  try {
+    const newReview = await createReview(id_user, id_novel, detail, numlike);
     return res.status(201).json(newReview);
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: 'Failed to create a review' });
+    return res.status(500).json({ message: error.message });
   }
 });
 
-module.exports = router;
+module.exports = router;  

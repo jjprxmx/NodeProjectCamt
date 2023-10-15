@@ -22,20 +22,24 @@ async function getReviewbyidnovel(req, res) {
   res.send(review.detail);
 }
 
-async function addReview(req, res) {
-    const { id_user, id_novel, detail, } = req.body;
-    const review = await basketData.create({
+async function createReview(id_user, id_novel, detail, numlike) {
+    try {
+      const newReview = await Review.create({
         id_user,
         id_novel,
-        detail
-    })
-    res.json(review);
-}
-
+        detail,
+        numlike,
+      });
+      return newReview;
+    } catch (error) {
+      console.error(error);
+      throw new Error('Failed to create a review');
+    }
+  }
 
 
 module.exports = {
     getReviewbyidnovel,
     getReview,
-    addReview
+    addReview,
 };

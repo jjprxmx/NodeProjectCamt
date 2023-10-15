@@ -9,7 +9,7 @@ import { userContext } from "../../App";
 
 const map=(data)=>{
   data.map((data)=>{
-    fetch((`${process.env.REACT_APP_API_PREME}/${data.id_novel}/Orders`),{    
+    fetch((`http://localhost:3000/${data.id_novel}/Orders`),{    
       method:"GET",                                     
   })
   })
@@ -25,7 +25,7 @@ const MyCollection = ({ className }) => {
 
   console.log(dataCon.id)
   useEffect(() => {
-    fetch((`${process.env.REACT_APP_API_PREME}/users/${dataCon.id}/Orders`),{    
+    fetch((`http://localhost:3000/users/${dataCon.id}/Orders`),{    
       method:"GET",                                     
   })
   .then(response => response.json())

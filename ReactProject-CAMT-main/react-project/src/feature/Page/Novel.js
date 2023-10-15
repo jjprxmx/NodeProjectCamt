@@ -49,7 +49,7 @@ const NovelPage = ({ className, idNovel, handlePrefixChange }) => {
     body: "",
   });
   //Api
-  const Api_Novel = `${process.env.REACT_APP_API_PREME}/novels/${id}`; // get novel by id
+  const Api_Novel = `http://localhost:3000/novels/${id}`; // get novel by id
   const { data } = useFetch(Api_Novel);
 
   //post
@@ -62,7 +62,7 @@ const NovelPage = ({ className, idNovel, handlePrefixChange }) => {
     console.log(heart)
     const postDataToServerView = async () => {
       try {
-        const url = `/reviews/${dataCon.id}/${id}`;
+        const url = `http://localhost:3000/reviews/${dataCon.id}/${id}`;
         const dataToSan = {
           details:inputReview,
           num_like:heart
@@ -131,7 +131,7 @@ const NovelPage = ({ className, idNovel, handlePrefixChange }) => {
   const basketSubmit = () => {
     const postDataToServerOrder = async () => {
       try {
-        const url = `/orders/basket/${dataCon.id}/${id}`;
+        const url = `http://localhost:3000/orders/basket/${dataCon.id}/${id}`;
         const response = await axios.post(url);
 
         console.log("คำขอ POST สำเร็จ:", response.data);
@@ -147,7 +147,7 @@ const NovelPage = ({ className, idNovel, handlePrefixChange }) => {
   }
 
   useEffect(()=> {
-    fetch((`${process.env.REACT_APP_API_PREME}/api/user/Review/${id}`),{    
+    fetch((`http://localhost:3000/api/user/Review/${id}`),{    
       method:"GET",                                     
   })
   .then(response => response.json())
