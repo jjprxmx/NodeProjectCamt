@@ -12,7 +12,13 @@ function getAllOrders(req, res) {
 
 async function getOrdersById(req, res) {
     try {
-        const orders = await Orders.findOne({id_user: req.params.id });
+        const orders = await Orders.findAll(
+            {
+                where: {
+                    id_user: req.params.id
+                }
+            }
+            );
         if (!orders) {
             return res.status(404).json({ message: 'User not found' });
         }

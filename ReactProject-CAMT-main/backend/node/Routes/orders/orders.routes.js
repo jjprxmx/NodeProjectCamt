@@ -8,7 +8,7 @@ router.get ('/',(req,res) => {
 
 });
 
-router.get ('/:id' , (req,res) =>{
+router.get ('/:id/Orders' , (req,res) =>{
     return service.getOrdersById(req, res);
 });
 

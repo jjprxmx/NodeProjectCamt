@@ -6,20 +6,37 @@ import novelData from "../../asset/novelData";
 import styled from "styled-components";
 import { userContext } from "../../App";
 
+
+const map=(data)=>{
+  data.map((data)=>{
+    fetch((`${process.env.REACT_APP_API_PREME}/novels/${data.id_novel}`),{    
+      method:"GET",                                     
+  })
+  })
+  .then(response => response.json())
+  .then(data=>{
+    return data
+  })
+}
+
 const MyCollection = ({ className }) => {
   const [novels, setNovel] = useState([]);
   const {dataCon,setDatacon} = useContext(userContext)
 
   console.log(dataCon.id)
   useEffect(() => {
-    fetch((`${process.env.REACT_APP_API_PREME}/api/user/myCollection/buy/${dataCon.id}`),{    
+    fetch((`${process.env.REACT_APP_API_PREME}/users/${dataCon.id}/orders`),{    
       method:"GET",                                     
   })
   .then(response => response.json())
   .then(data=>{ 
-    setNovel(data)
-    console.log("from Buy")
-    console.log(novels)
+    console.log("from mycol1")
+    map(data)
+  .then(response => response.json())
+  .then(data=>{
+      console.log("from mycol2")
+      console.log(data)
+  })
   })
   },[])
   return (

@@ -144,25 +144,13 @@ function Login(isOpen) {
 })
 .then(response => response.json())
 .then(data => {
-setData(data)
-if(data!="fail"){
-  fetch(`${process.env.REACT_APP_API_PREME}/auth/`,{    
-    method:"POST",
-    credentials: 'include',
-    headers:{
-        "Content-Type": "application/json",
-    },
-    })
-    .then(response => response.json())
-    .then(data => {
-    setData(data)
-    console.log(data)
-    setDataCon({name:data.name, id:data.id, email:data.email,level:data.level})
-
-    })
-    dispatch(hidelogin())
+  setData(data)
+  console.log("from log in (2)")
+  console.log(data)
+  setDataCon({name:data.name, id:data.id, email:data.email,level:data.level})
+  dispatch(hidelogin())
   togglePopup()
-}
+
 })
 
 }
