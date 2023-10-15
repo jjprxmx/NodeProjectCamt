@@ -145,8 +145,8 @@ function Login(isOpen) {
 .then(response => response.json())
 .then(data => {
 setData(data)
-if(data=="success"){
-  fetch(`${process.env.REACT_APP_API_PREME}/api/user/checkcookie`,{    
+if(data!="fail"){
+  fetch(`${process.env.REACT_APP_API_PREME}/auth/`,{    
     method:"POST",
     credentials: 'include',
     headers:{
@@ -157,7 +157,7 @@ if(data=="success"){
     .then(data => {
     setData(data)
     console.log(data)
-    setDataCon({displayname :data[0].display_name, id:data[0].id, email:data[0].email,level:data[0].level})
+    setDataCon({name:data.name, id:data.id, email:data.email,level:data.level})
 
     })
     dispatch(hidelogin())

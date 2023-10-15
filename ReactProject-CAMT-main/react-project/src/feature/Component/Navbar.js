@@ -218,7 +218,7 @@ const Navbar = ({onSearchResults}) => {
 
   const logOut = () => {
     document.cookie = 'id' + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-    setDataCon({displayname :"", id:"", email:""})
+    setDataCon({name :"", id:"", email:""})
   }
 
 
@@ -255,7 +255,7 @@ const Navbar = ({onSearchResults}) => {
                   <span className="link-text">Basket</span>
                 </Link>
               </li>
-              {console.log(dataCon.displayname)}
+              {console.log(dataCon.name)}
                       {console.log(dataCon.level)}
               <li class="parent">
                 <Link to={`/myCollection`} className="link">
@@ -264,10 +264,10 @@ const Navbar = ({onSearchResults}) => {
               </li>
 
               <li class="parent">
-                {dataCon.displayname !== "" ? (
+                {dataCon.name !== "" ? (
                   <div className="pic">
                     <img alt="" src={user}/>
-                    <p>{dataCon.displayname}</p>
+                    <p>{dataCon.name}</p>
                     <img alt="" src={logout} onClick={()=>logOut()}/>
                     </div>
                 ) : (
@@ -303,7 +303,7 @@ const Navbar = ({onSearchResults}) => {
                     <span className="link-text">My Collection</span>
                   </Link>
                 </li>
-                {console.log(dataCon.displayname)}
+                {console.log(dataCon.name)}
                       {console.log(dataCon.level)}
                 <li class="parent">
                   <Link to={`/addBook`} className="link">
@@ -311,10 +311,10 @@ const Navbar = ({onSearchResults}) => {
                   </Link>
                 </li>
                 <li class="parent">
-                  {dataCon.displayname !== "" ? (
+                  {dataCon.name !== "" ? (
                     <div className="pic">
                       <img alt="" className="user" src={user} />
-                      <p>{dataCon.displayname}</p>
+                      <p>{dataCon.name}</p>
                       <img alt="" className="logout" src={logout} onClick={()=>logOut()}/>
                   
                     </div>

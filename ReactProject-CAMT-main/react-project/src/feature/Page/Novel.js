@@ -280,7 +280,7 @@ const NovelPage = ({ className, idNovel, handlePrefixChange }) => {
           <div className="user">
             <img src={user}></img>
             <Text size={18} family={"Anuphan"} weight="500">
-            {dataCon.displayname}
+            {dataCon.name}
             </Text>
           </div>
 

@@ -1,6 +1,7 @@
 const express = require('express');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const app = express();
-
 const basketRoute = require('./Routes/baskets/basket.routes');
 const novelRouter = require('./Routes/novels/novels.routes');
 
@@ -12,6 +13,12 @@ const {connect, sync} = require('./config/database');
 // const routes = require('./Routes');
 const morgan = require('morgan');
 
+const corsOptions = {
+  origin: 'http://localhost:3001',
+  credentials : true
+}
+
+
 // Connect to the database
 async function initializeDatabase() {
   await connect();
@@ -20,6 +27,8 @@ async function initializeDatabase() {
 }
 initializeDatabase();
 
+app.use(cookieParser());
+app.use(cors(corsOptions));
 app.use(morgan('tiny'));
 
 app.use(express.json());

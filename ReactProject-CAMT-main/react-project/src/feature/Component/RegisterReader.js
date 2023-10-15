@@ -23,7 +23,7 @@ const RegisterReader = ({ className }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [retypePassword, setRetypePassword] = useState("");
-  const [displayName, setDisplayName] = useState("");
+  const [Name, setName] = useState("");
   const [selectedGender, setSelectedGender] = useState("");
 
   const handleUsernameChange = (event) => {
@@ -43,7 +43,7 @@ const RegisterReader = ({ className }) => {
   };
 
   const handleDisplayNameChange = (event) => {
-    setDisplayName(event.target.value);
+    setName(event.target.value);
   };
 
   const handleGenderChange = (gender) => {
@@ -60,7 +60,7 @@ const RegisterReader = ({ className }) => {
     console.log(email)
     console.log(password)
     console.log(selectedGender)
-    console.log(displayName)
+    console.log(Name)
     console.log(retypePassword)
 
     if(password != retypePassword){
@@ -77,7 +77,7 @@ const RegisterReader = ({ className }) => {
           username:username,
           password:password,
           gender:selectedGender,
-          display_name:displayName
+          name:Name
         }
         const response = await axios.post(url,dataToSan);
 
@@ -182,7 +182,7 @@ return (
                 <Input
                 type="text"
                 placeholder="Display Name"
-                value={displayName}
+                value={Name}
                 onChange={handleDisplayNameChange}
                 size={"560px"}
               />

@@ -24,14 +24,14 @@ const userContext = React.createContext();
 
 const App = () => {
   const [searchResults, setSearchResults] = useState([]);
-  const [dataCon, setDataCon] = useState({displayname :"", id:"", email:"",pic:"",level:""})
+  const [dataCon, setDataCon] = useState({name :"", id:"", email:"",pic:"",level:""})
   const [isLoading, setLoading] = useState(true)
 
   const handlePrefixChange = (dataArray) => {
     setSearchResults(dataArray);
   };
 
-  const Api_Novel = "/novels" ; // get all
+  const Api_Novel = "http://localhost:3000/novels/" ; // get all
   const { data } = useFetch(Api_Novel);
 
   useEffect(() => {
@@ -45,14 +45,16 @@ const App = () => {
       .then(response => response.json())
       .then(data => {
         if(data.status == "Failed") {
-          setDataCon({displayname :"", id:"", email:"",pic:""})
+          setDataCon({name :"", id:"", email:"",pic:""})
           setLoading(false)
           return
         }
-      setDataCon({displayname :data[0].display_name, id:data[0].id, email:data[0].email,level:data[0].level})
+
+      setDataCon({name :data.name, id:data.id, email:data.email,level:data.level})
       setLoading(false)
       })
   },[])
+  
   return (
     <>
     <Provider store={store}>

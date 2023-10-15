@@ -14,7 +14,7 @@ const Search = ({ size, onSearchResults }) => {
   const inputStyle = { ...style, width: size };
   const [prefix, setPrefix] = useState("");
   const [debouncedPrefix, setDebouncedPrefix] = useState("");
-  const Api_Novel = `/novels/search/${debouncedPrefix}`;
+  const Api_Novel = `http://localhost:3000/novels/${debouncedPrefix}`;
   const { data } = useFetch(Api_Novel);
 
   useEffect(() => {

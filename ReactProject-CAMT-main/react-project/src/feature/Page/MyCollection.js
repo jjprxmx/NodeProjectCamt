@@ -19,7 +19,7 @@ const MyCollection = ({ className }) => {
   .then(data=>{ 
     setNovel(data)
     console.log("from Buy")
-    console.log(novels[0])
+    console.log(novels)
   })
   },[])
   return (
