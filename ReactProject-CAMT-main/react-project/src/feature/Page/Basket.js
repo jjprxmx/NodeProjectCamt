@@ -13,7 +13,7 @@ const Busket =() =>{
   const [buy,setBuy]=useState()
   
     const reloadContent = async () =>{
-      fetch((`${process.env.REACT_APP_API_PREME}/api/user/basket/${dataCon.id}`),{    
+      fetch((`${process.env.REACT_APP_API_PREME}/${dataCon.id}/baskets`),{    
         method:"GET",                                     
     })
     .then(response => response.json())

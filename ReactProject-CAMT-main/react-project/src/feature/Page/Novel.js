@@ -49,7 +49,7 @@ const NovelPage = ({ className, idNovel, handlePrefixChange }) => {
     body: "",
   });
   //Api
-  const Api_Novel = `/novels/${id}`; // get novel by id
+  const Api_Novel = `${process.env.REACT_APP_API_PREME}/novels/${id}`; // get novel by id
   const { data } = useFetch(Api_Novel);
 
   //post
@@ -116,18 +116,18 @@ const NovelPage = ({ className, idNovel, handlePrefixChange }) => {
     if (parts.length === 2) return parts.pop().split(';').shift();
   }
   //post api
-  const onClick = () => {
-    const url = `/baskets/{${id}/${getCookie("id")}}`;
-    axios.post(url)
-      .then(response => {
-        console.log(response.data);
-        alert(`basket success`)
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        alert(`error`)
-      });
-  };
+  // const onClick = () => {
+  //   const url = `/baskets/{${id}/${getCookie("id")}}`;
+  //   axios.post(url)
+  //     .then(response => {
+  //       console.log(response.data);
+  //       alert(`basket success`)
+  //     })
+  //     .catch(error => {
+  //       console.error('Error:', error);
+  //       alert(`error`)
+  //     });
+  // };
   const basketSubmit = () => {
     const postDataToServerOrder = async () => {
       try {
