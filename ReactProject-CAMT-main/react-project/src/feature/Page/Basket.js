@@ -13,7 +13,7 @@ const Busket =() =>{
   const [buy,setBuy]=useState()
   
     const reloadContent = async () =>{
-      fetch((`http://localhost:3000/${dataCon.id}/baskets`),{    
+      fetch((`http://localhost:3000/user/${dataCon.id}/baskets`),{    
         method:"GET",                                     
     })
     .then(response => response.json())
