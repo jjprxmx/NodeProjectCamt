@@ -31,7 +31,10 @@ const MyCollection = ({ className }) => {
   .then(response => response.json())
   .then(data=>{ 
     console.log("from mycol1")
-    map(data)
+    console.log(data)
+    data.forEach(function(element){
+        console.log(element);
+    })
   .then(response => response.json())
   .then(data=>{
       console.log("from mycol2")
