@@ -19,7 +19,8 @@ async function getItem(req, res) {
     const basket = await Basket.findOne({
         where: {
             id_user: req.params.id_user,
-            id_novel: req.params.id_novel
+            id_novel: req.params.id_novel,
+            id : req.params.id
         }
     });
     res.send(basket.id_novel);
@@ -29,7 +30,8 @@ async function deleteItem(req, res) {
     await Basket.destroy({
         where: {
             id_user: req.params.id_user,
-            id_novel: req.params.id_novel
+            id_novel: req.params.id_novel,
+            id : req.params.id
         }
     });
     res.sendStatus(204);
