@@ -2,15 +2,17 @@ import GrayBackground from "./GrayBackground";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-regular-svg-icons'
 import { styled } from 'styled-components';
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
+import {userContext} from "../../App";
 import Button from "./Button";
 import PropTypes from "prop-types";
 
 const SelectForPay = (props) => {
+  const {dataCon, setDataCon}= useContext(userContext)
     const {className} = props
     const idel=props.props.id
     const del = (id)=>{
-        fetch((`http://localhost:3001/api/user/basket/del/${id}`),{    
+        fetch((`http://localhost:3000/user/${dataCon.id}/basket/${id}`),{    
               method:"Delete",                                     
         })
           .then(response => response.json())

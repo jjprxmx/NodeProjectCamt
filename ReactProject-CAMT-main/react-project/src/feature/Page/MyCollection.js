@@ -1,47 +1,41 @@
 import React ,{useContext, useState,useEffect} from "react";
 import Text from "../SubComponent/Text";
-import Nav from "../Component/Navbar";
 import NovelProduct from "../../feature/Novel_Product";
-import novelData from "../../asset/novelData";
 import styled from "styled-components";
 import { userContext } from "../../App";
 
 
-const map=(data)=>{
-  data.map((data)=>{
-    fetch((`http://localhost:3000/${data.id_novel}/Orders`),{    
-      method:"GET",                                     
-  })
-  })
-  .then(response => response.json())
-  .then(data=>{
-    return data
-  })
-}
+
 
 const MyCollection = ({ className }) => {
   const [novels, setNovel] = useState([]);
   const {dataCon,setDatacon} = useContext(userContext)
 
   console.log(dataCon.id)
+
   useEffect(() => {
-    fetch((`http://localhost:3000/users/${dataCon.id}/Orders`),{    
-      method:"GET",                                     
-  })
-  .then(response => response.json())
-  .then(data=>{ 
-    console.log("from mycol1")
-    console.log(data)
-    data.forEach(function(element){
-        console.log(element);
-    })
-  .then(response => response.json())
-  .then(data=>{
-      console.log("from mycol2")
-      console.log(data)
-  })
-  })
-  },[])
+    const fetchData = async () => {
+      try {
+        const ordersResponse = await fetch(`http://localhost:3000/users/${dataCon.id}/Orders`);
+        const ordersData = await ordersResponse.json();
+
+        const novelPromises = ordersData.map(async (element) => {
+          const novelResponse = await fetch(`http://localhost:3000/novels/${element.id_novel}`);
+          const novelData = await novelResponse.json();
+  
+          return novelData;
+        });
+  
+        const novelsData = await Promise.all(novelPromises);
+        setNovel(novelsData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+  
+    fetchData();
+  }, [dataCon.id]);
+ 
   return (
     <div className={className}>
       
