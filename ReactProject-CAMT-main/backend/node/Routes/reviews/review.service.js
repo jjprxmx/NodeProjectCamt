@@ -41,5 +41,5 @@ async function createReview(id_user, id_novel, detail, numlike) {
 module.exports = {
     getReviewbyidnovel,
     getReview,
-    addReview,
+    createReview,
 };

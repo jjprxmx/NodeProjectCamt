@@ -17,7 +17,7 @@ const Busket =() =>{
         method:"GET",                                     
     })
     .then(response => response.json())
-    .then(data=>{ 
+    .then(data=>{     
       setContent([])
       data.forEach(element => {
         setContent(old => [...old, <div style={{marginTop: "10px"}}><SelectForPay keys={element.name} props={element} setContent={reloadContent} checked={setBuy(element.id)}/></div>])
