@@ -5,33 +5,40 @@ const { data } = require('../../config/database');
 
 async function getAllBasket(req, res) {
     const basket = await Basket.findAll();
-    res.send(basket);
+    if(!basket){
+        return res.status(404).json({message: 'Basket not found'});
+    }
+    res.status(200).send(basket);
 }
 
 async function getBasket(req, res) {
     const basket = await Basket.findOne({
         id_user: req.params.id 
     });
-    res.send(basket);
+    if(!basket){
+        return res.status(404).json({message: 'Basket not found'});
+    }
+    res.status(200).send(basket);
 }
 
 async function getItem(req, res) {
     const basket = await Basket.findOne({
         where: {
             id_user: req.params.id_user,
-            id_novel: req.params.id_novel,
-            id : req.params.id
+            id_novel: req.params.id_novel
         }
     });
-    res.send(basket.id_novel);
+    if(!basket){
+        return res.status(404).json({message: 'Basket not found'});
+    }
+    res.status(200).send(basket.id_novel);
 }
 
 async function deleteItem(req, res) {
     await Basket.destroy({
         where: {
             id_user: req.params.id_user,
-            id_novel: req.params.id_novel,
-            id : req.params.id
+            id_novel: req.params.id_novel
         }
     });
     res.sendStatus(204);
