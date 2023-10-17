@@ -77,11 +77,27 @@ async function searchNovels(keyword) {
   }
 }
 
+async function findNovelByName(req, res) {
+  const nameToSearch = req.params.name; 
+
+  const novel = await Novels.findOne({
+    where: { name: nameToSearch }, 
+  });
+
+  if (novel) {
+    res.status(200).json({ name: novel.name }); 
+  } else {
+    res.status(404).json({ message: "Novel not found" });
+  }
+}
+
+
 module.exports = {
   findAllNovel,
   findNovelById,
   createNovel,
-  searchNovels
+  searchNovels,
+  findNovelByName
 };
 
 
