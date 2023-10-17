@@ -148,7 +148,7 @@ const AddBook = (className) => {
     // สร้างฟังก์ชันสำหรับการส่งคำขอ POST
     const postDataToServer = async () => {
       try {
-        const url = "/novels"; // แทนที่ด้วย URL ของเซิร์ฟเวอร์ที่คุณต้องการ
+        const url = "/novels/"; // แทนที่ด้วย URL ของเซิร์ฟเวอร์ที่คุณต้องการ
         const dataToSend = {
           name: name,
           price: price,
