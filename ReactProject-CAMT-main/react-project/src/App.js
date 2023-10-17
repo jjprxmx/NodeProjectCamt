@@ -23,6 +23,7 @@ const userContext = React.createContext();
 
 
 const App = () => {
+
   const [searchResults, setSearchResults] = useState([]);
   const [dataCon, setDataCon] = useState({name :"", id:"", email:"",pic:"",level:""})
   const [isLoading, setLoading] = useState(true)
@@ -52,6 +53,7 @@ const App = () => {
 
       setDataCon({name :data.name, id:data.id, email:data.email,level:data.level})
       setLoading(false)
+      
       })
   },[])
   

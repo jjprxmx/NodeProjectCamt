@@ -13,13 +13,15 @@ const Busket =() =>{
   const [buy,setBuy]=useState()
   
     const reloadContent = async () =>{
-      fetch((`http://localhost:3000/user/${dataCon.id}/baskets`),{    
+      fetch((`http://localhost:3000/user/${dataCon.id}/basket`),{    
         method:"GET",                                     
     })
     .then(response => response.json())
-    .then(data=>{     
+    .then(data=>{ 
+   
       setContent([])
-      data.forEach(element => {
+      if(typeof(data) === "string"){data = JSON.parse(data)}
+      data.forEach(function(element){
         setContent(old => [...old, <div style={{marginTop: "10px"}}><SelectForPay keys={element.name} props={element} setContent={reloadContent} checked={setBuy(element.id)}/></div>])
       });
       setLoad(false)

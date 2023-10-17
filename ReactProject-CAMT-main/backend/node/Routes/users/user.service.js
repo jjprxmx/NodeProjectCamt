@@ -12,6 +12,7 @@ async function checkUsers(req, res) {
         }
         });
         if (user) {
+        res.cookie('id',user.id);
          res.json(user)
         }
         else{
