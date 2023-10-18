@@ -62,7 +62,7 @@ const App = () => {
   return (
     <>
     <Provider store={store}>
-    <userContext.Provider value={{dataCon,setDataCon}}>
+    <userContext.Provider value={{dataCon,setDataCon,searchResults,setSearchResults}}>
       <GlobalStyle/>
     {isLoading ? <Load/> : 
     <>

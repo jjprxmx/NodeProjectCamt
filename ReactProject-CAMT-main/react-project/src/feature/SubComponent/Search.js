@@ -70,10 +70,10 @@
 
 // export default Search;
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import PropTypes from "prop-types";
 import useFetch from "../Hook/useFetch";
-
+import { userContext } from "../../App";
 const style = {
   padding: "8px",
   border: "1px solid #ccc",
@@ -83,6 +83,7 @@ const style = {
 };
 
 const Search = ({ size, onSearchResults }) => {
+  const {searchResults,setSearchResults}=useContext(userContext)
   const inputStyle = { ...style, width: size };
   const [prefix, setPrefix] = useState(""); // Change here
   const [debouncedPrefix, setDebouncedPrefix] = useState("");
@@ -110,6 +111,7 @@ const Search = ({ size, onSearchResults }) => {
       console.log("ss");
       console.log(searchResults);
       onSearchResults(searchResults);
+      setSearchResults(searchResults)
     } else {
       console.log("fs");
       onSearchResults([]);
