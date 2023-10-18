@@ -71,7 +71,7 @@ const RegisterReader = ({ className }) => {
     }
     const postDataToServer = async () => {
       try{
-        const url = "/users";
+        const url = "http://localhost:3000/users/login";
         const dataToSan = {
           email:email,
           username:username,
