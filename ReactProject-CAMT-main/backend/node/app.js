@@ -7,7 +7,7 @@ const novelRouter = require('./Routes/novels/novels.routes');
 const userRouter = require('./Routes/users/user.routes');
 const reviewRouter = require('./Routes/reviews/review.routes');
 const ordersRouter = require('./Routes/orders/orders.routes');
-const sellerRouter = require('./Routes/seller/seller.routes');
+//const sellerRouter = require('./Routes/seller/seller.routes');
 
 const {connect, sync} = require('./config/database');
 
@@ -42,7 +42,7 @@ app.use('/novels', novelRouter);
 app.use('/users', userRouter);
 app.use('/novel', reviewRouter);
 app.use('/order', ordersRouter);
-app.use('/seller', sellerRouter);
+//app.use('/seller', sellerRouter);
 
 //create server
 app.listen(3000, () => {
