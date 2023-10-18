@@ -1,7 +1,7 @@
 const express = require('express');
 const Users = require('../../model/Users');
 
-async function checkUsers(req, res) {
+async function createUsers(req, res) {
   const { email, username, password, name, gender, level, pic } = req.body;
   try {
     const user = await Users.create({
@@ -14,16 +14,28 @@ async function checkUsers(req, res) {
       pic,
     });
     res.status(201).send(user);
-    // if (user) {
-    //   res.cookie('id', user.id);
-    //   res.json(user)
-    // }
-    // else {
-    //   res.send("fail");
-    // }
-
   } catch (err) {
     res.status(500).json(err);
+  }
+}
+
+async function checkUsers(req, res) {
+  try {
+    const user = await Users.findOne({
+      where: {
+        username: req.body.username,
+        password: req.body.password
+      }
+    });
+    if (user) {
+      res.cookie('id', user.id);
+      res.json(user)
+    }
+    else {
+      res.send("fail");
+    }
+  } catch (err) {
+    res.json(err);
   }
 }
 
@@ -60,5 +72,6 @@ async function checkCookie(req, res) {
 
 module.exports = {
   checkUsers,
-  checkCookie
+  checkCookie,
+  createUsers
 }
