@@ -11,14 +11,13 @@ router.get('/:id', (req, res) => {
     return service.findNovelById(req, res);
 });
 
+// เพิ่มเส้นทางใหม่สำหรับการค้นหาตามชื่อ
+router.get('/search/:name', (req, res) => {
+    return service.findNovelByName(req, res);
+});
+
 router.post('/', (req,res) => {
     return service.createNovel(req, res);
 });
-
-router.get('/search/:debouncedPrefix', (req, res) => {
-    const keyword = req.params.keyword;
-    const searchResults = searchService.searchNovels(keyword); // ใช้ฟังก์ชันการค้นหาของคุณ
-    res.json(searchResults);
-  });
 
 module.exports = router;

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Review = require('../../model/Review');
+const {Review} = require('../../model/Review');
 
 async function getReview (req,res){
     res.send(Review.id_novel)

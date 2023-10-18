@@ -8,27 +8,39 @@ import {userContext} from "../../App";
 import axios from "axios";
 const Busket =() =>{
   const [load,setLoad] = useState(true)
-  const [content, setContent] = useState([]);
+
   const {dataCon, setDataCon}= useContext(userContext)
   const [buy,setBuy]=useState()
+  const [content, setContent] = useState([]);
+
+      const reloadContent = async () => {
+        try {
+          const ordersResponse = await fetch(`http://localhost:3000/user/${dataCon.id}/basket`);
+          const ordersData = await ordersResponse.json();
   
-    const reloadContent = async () =>{
-      fetch((`http://localhost:3000/${dataCon.id}/baskets`),{    
-        method:"GET",                                     
-    })
-    .then(response => response.json())
-    .then(data=>{ 
-      setContent([])
-      data.forEach(element => {
-        setContent(old => [...old, <div style={{marginTop: "10px"}}><SelectForPay keys={element.name} props={element} setContent={reloadContent} checked={setBuy(element.id)}/></div>])
-      });
-      setLoad(false)
-    })
-    }
+          const novelPromises = ordersData.map(async (element) => {
+            const novelResponse = await fetch(`http://localhost:3000/novels/${element.id_novel}`);
+            const novelData = await novelResponse.json();
+            console.log("from bus")
+            console.log(novelData)
+            return novelData;
+          });
+
+          const novelsData = await Promise.all(novelPromises);
+          setContent([])
+            if(typeof(novelsData) === "string"){novelsData = JSON.parse(novelsData)}
+            novelsData.forEach(function(element){
+              setContent(old => [...old, <div style={{marginTop: "10px"}}><SelectForPay keys={element.name} props={element} setContent={reloadContent} checked={setBuy(element.id)}/></div>])
+            });
+            setLoad(false)
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      };
+    
     useEffect( () => {
       reloadContent()
     },[])
-    
   return   (
     <>
 

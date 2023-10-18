@@ -4,25 +4,32 @@ const Basket = require('../../model/Basket');
 const { data } = require('../../config/database');
 
 async function getAllBasket(req, res) {
-    const basket = await Basket.findAll();
-    res.send(basket);
+    res.status(200).send(Basket);
 }
 
 async function getBasket(req, res) {
-    const basket = await Basket.findOne({
-        id_user: req.params.id 
-    });
-    res.send(basket);
+    const basket = await Basket.findAll(
+        {
+            where: { id_user: req.params.id_user }
+
+        });
+    if (!basket) {
+        return res.status(404).json({ message: 'Basket not found' });
+    }
+    res.status(200).send(basket);
 }
 
 async function getItem(req, res) {
-    const basket = await Basket.findOne({
+    const basket = await Basket.findAll({
         where: {
             id_user: req.params.id_user,
             id_novel: req.params.id_novel
         }
     });
-    res.send(basket.id_novel);
+    if (!basket) {
+        return res.status(404).json({ message: 'Basket not found' });
+    }
+    res.status(200).send(basket.id_novel);
 }
 
 async function deleteItem(req, res) {

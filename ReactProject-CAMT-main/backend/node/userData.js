@@ -32,3 +32,19 @@ const userData = [
 ]
 
 module.exports = userData
+
+//{
+//     "name": "เกียร์วุ่นรัก",
+//     "price": "250",
+//     "category": "kide",
+//     "numpage":"250",
+//     "rating":5,
+//     "file_pic": "เกียร์วุ่นรัก.jpeg"
+//     "promotion": "a",
+//     "file_test": "kide.pdf",
+//     "file_real": "เกียร์วุ่นรัก.pdf",
+//     "release_date":"250",
+//     "author":"pimms",
+//     "description": "เกียร์วุ่นรัก"
+//     "cover_price": "a"
+// }
