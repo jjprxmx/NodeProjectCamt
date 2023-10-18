@@ -13,9 +13,11 @@ const Novels = sequelize.define("novels", {
   },
   numpage: {
     type: DataTypes.INTEGER,
+    allowNull:true
   },
   rating: {
     type: DataTypes.DOUBLE,
+    allowNull: true
   },
   promotion: {
     type: DataTypes.INTEGER,
@@ -31,6 +33,7 @@ const Novels = sequelize.define("novels", {
   },
   release_date: {
     type: DataTypes.STRING,
+    allowNull: true
   },
   author: {
     type: DataTypes.STRING,
@@ -40,6 +43,7 @@ const Novels = sequelize.define("novels", {
   },
   cover_price: {
     type: DataTypes.INTEGER,
+    allowNull:true
   },
   createdAt: {
     type: DataTypes.DATE,

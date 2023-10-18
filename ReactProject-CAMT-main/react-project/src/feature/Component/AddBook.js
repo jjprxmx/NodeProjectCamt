@@ -1,7 +1,7 @@
 import Text from "../SubComponent/Text";
 import { styled } from "styled-components";
 import Input from "../SubComponent/Input";
-import GrayBackground from "../SubComponent/GrayBackground";
+//import GrayBackground from "../SubComponent/GrayBackground";
 import UploadFile from "../SubComponent/UploadFile";
 import Button from "../SubComponent/Button";
 import React, { useState, useEffect } from "react";
@@ -144,41 +144,71 @@ const AddBook = (className) => {
       setExam(selectedFile.name);
     }
   };
-  const onClick = async () => {
+  const onClick = () => {
     // สร้างฟังก์ชันสำหรับการส่งคำขอ POST
+    //const postDataToServer = async () => {
+    //   try {
+    //     const url = "http://localhost:3000/novels/"; // แทนที่ด้วย URL ของเซิร์ฟเวอร์ที่คุณต้องการ
+    //     const dataToSend = {
+    //       name: name,
+    //       price: price,
+    //       file_pic: imageURL,
+    //       file_real: file,
+    //       file_test: exam,
+    //       category: type,
+    //       description:description,
+    //       promotion:promotion,
+    //       author:author
+    //     }; // แทนที่ด้วยข้อมูลที่คุณต้องการส่ง
+
+    //     const response = await axios.post(url, dataToSend);
+
+    //     // อัปเดตสถานะเพื่อแสดงข้อมูลที่ได้จากเซิร์ฟเวอร์
+    //     setData(response.data);
+    //     console.log("คำขอ POST สำเร็จ:", response.data);
+    //     alert("created success")
+    //   } catch (error) {
+    //     console.error("เกิดข้อผิดพลาดในการส่งคำขอ POST:", error);
+    //     alert("arror")
+    //   }
+    // };
+
+    // // เรียกใช้งานฟังก์ชันสำหรับการส่งคำขอ POST เมื่อคอมโพเนนต์ถูกโหลด
+    // postDataToServer();
     const postDataToServer = async () => {
       try {
-        const url = "/novels/"; // แทนที่ด้วย URL ของเซิร์ฟเวอร์ที่คุณต้องการ
+        const url = `http://localhost:3000/novels/`;
         const dataToSend = {
-          name: name,
-          price: price,
-          file_pic: imageURL,
-          file_real: file,
-          file_test: exam,
-          category: type,
-          description:description,
-          promotion:promotion,
-          author:author
-        }; // แทนที่ด้วยข้อมูลที่คุณต้องการส่ง
-
+                name: name,
+                price: price,
+                category: type,
+                promotion:promotion,
+                file_pic: imageURL,
+                file_test: exam,
+                file_real: file,
+                 author:author,
+                description:description
+            
+               
+              };
         const response = await axios.post(url, dataToSend);
+        //setData(response.data);
 
-        // อัปเดตสถานะเพื่อแสดงข้อมูลที่ได้จากเซิร์ฟเวอร์
-        setData(response.data);
         console.log("คำขอ POST สำเร็จ:", response.data);
-        alert("created success")
+        alert(`review success`)
       } catch (error) {
         console.error("เกิดข้อผิดพลาดในการส่งคำขอ POST:", error);
-        alert("arror")
+        alert(`error`)
       }
     };
 
-    // เรียกใช้งานฟังก์ชันสำหรับการส่งคำขอ POST เมื่อคอมโพเนนต์ถูกโหลด
+    // เรียกใช้งานฟังก์ชันสำหรับการส่งคำขอ POST ข้อมูลธนาคาร
     postDataToServer();
   };
-  useEffect(() => {
-    console.log("ค่า file ถูกอัปเดต:", file, exam, imageURL);
-  }, []);
+
+  // useEffect(() => {
+  //   console.log("ค่า file ถูกอัปเดต:", file, exam, imageURL);
+  // }, []);
 
   return (
     <StyledAddBook>

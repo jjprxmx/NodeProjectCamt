@@ -1,4 +1,3 @@
-
 const Novels = require("../../model/Novels");
 
 async function findAllNovel(req, res) {
@@ -33,7 +32,7 @@ async function createNovel(req, res) {
       release_date,
       author,
       description,
-      cover_price,
+      cover_price
     } = req.body;
 
     const novel = await Novels.create({
@@ -49,7 +48,7 @@ async function createNovel(req, res) {
       release_date,
       author,
       description,
-      cover_price,
+      cover_price
     });
 
     res.status(201).json(novel);
@@ -59,23 +58,7 @@ async function createNovel(req, res) {
   }
 }
 
-async function searchNovels(keyword) {
-  try {
-    
-    const novels = await Novels.findAll({
-      where: {
-        name: {
-          [Op.like]: `%${keyword}%`
-        }
-      }
-    });
 
-    return novels;
-  } catch (error) {
-    console.error("Error searching novels:", error);
-    throw new Error("Error searching novels");
-  }
-}
 
 async function findNovelByName(req, res) {
   const nameToSearch = req.params.name; 
@@ -95,7 +78,6 @@ module.exports = {
   findAllNovel,
   findNovelById,
   createNovel,
-  searchNovels,
   findNovelByName
 };
 

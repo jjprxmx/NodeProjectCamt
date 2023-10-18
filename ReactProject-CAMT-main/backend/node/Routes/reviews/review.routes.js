@@ -6,14 +6,14 @@ router.get ('/',(req,res) => {
     return service.getReview(req,res)
 })
 
-router.get('/:id/reviews', (req, res) => {
+router.get('/:id/Reviews', (req, res) => {
   return service.getReviewbyidnovel(req,res);
 });
 
-router.post('/', (req, res) => {
+router.post('/:iduser/novel/:idnovel', (req, res) => {
   return service.createReview(req,res);
 });
 
 
 
-module.exports = router;  
+module.exports = router;  //

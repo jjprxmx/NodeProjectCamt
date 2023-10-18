@@ -62,8 +62,10 @@ const NovelPage = ({ className, idNovel, handlePrefixChange }) => {
     console.log(heart)
     const postDataToServerView = async () => {
       try {
-        const url = `http://localhost:3000/novel/`;
+        const url = `http://localhost:3000/novel/${dataCon.id}/novel/${id}`;
         const dataToSan = {
+          id_user : dataCon.id,
+          id_novel:id,
           details:inputReview,
           num_like:heart
         };
@@ -147,7 +149,7 @@ const NovelPage = ({ className, idNovel, handlePrefixChange }) => {
   }
 
   useEffect(()=> {
-    fetch((`http://localhost:3000/novel/${id}/Reviews`),{    
+    fetch((`http://localhost:3000/novel/${id}/reviews`),{    
       method:"GET",                                     
   })
   .then(response => response.json())
@@ -320,7 +322,7 @@ const NovelPage = ({ className, idNovel, handlePrefixChange }) => {
           <Text size={30} family={"Anuphan"} weight="600">
             รีวิวทั้งหมด
           </Text>
-          {reviews.map((e)=>
+          {reviews.map((element)=>
           <div className="box-reviews">
             <div className="user-review">
               <img src={user}></img>
@@ -328,14 +330,14 @@ const NovelPage = ({ className, idNovel, handlePrefixChange }) => {
                 <Text size={15} family={"Anuphan"} weight="500">
                   
                 </Text>
-                <Heart heartCount={e.num_like} />
+                <Heart heartCount={element.num_like} />
               </div>
             </div>
             
             <>
             <div className="details-review">
               <Text size={15} family={"Anuphan"} weight="500">
-                { e.details}
+                { element.details}
               </Text>
             </div>
             </>
@@ -346,9 +348,9 @@ const NovelPage = ({ className, idNovel, handlePrefixChange }) => {
                 hoveredImg={likeHovered}
                 className="icon-button"
               />
-              <Text size={12} family={"Anuphan"} weight="500">
-                {e.display_name}
-              </Text>
+              {/* <Text size={12} family={"Anuphan"} weight="500">
+                {element.name}
+              </Text> */}
             </div>
           </div>
             )}
@@ -762,6 +764,7 @@ export default styled(NovelPage)`
   }
   .user-review {
     display: flex;
+    margin-top:15px;
     align-items: center;
   }
   .user-review img {
