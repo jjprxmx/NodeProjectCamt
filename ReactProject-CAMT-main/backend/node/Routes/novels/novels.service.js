@@ -80,7 +80,7 @@ async function searchNovels(keyword) {
 async function findNovelByName(req, res) {
   const nameToSearch = req.params.name; 
 
-  const novel = await Novels.findOne({
+  const novel = await Novels.findAll({
     where: { name: nameToSearch }, 
   });
 

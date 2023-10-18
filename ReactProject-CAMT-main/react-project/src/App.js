@@ -30,6 +30,8 @@ const App = () => {
 
   const handlePrefixChange = (dataArray) => {
     setSearchResults(dataArray);
+    console.log("from handlePrefixChange")
+    console.log(searchResults)
   };
 
   const Api_Novel = "http://localhost:3000/novels/" ; // get all

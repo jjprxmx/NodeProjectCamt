@@ -10,8 +10,7 @@ async function getReview (req,res){
 async function getReviewbyidnovel(req, res) {
   const review = await Review.findAll({
     where:{
-        id_novel:req.params.id,
-        details:req.params.idReview
+        id_novel:req.params.id
     }
   });
   res.send(review.detail);
