@@ -85,12 +85,11 @@ async function findNovelByName(req, res) {
   });
 
   if (novel) {
-    res.status(200).json({ name: novel.name }); 
+    res.status(200).json(novel); 
   } else {
     res.status(404).json({ message: "Novel not found" });
   }
 }
-
 
 module.exports = {
   findAllNovel,
