@@ -62,7 +62,7 @@ const NovelPage = ({ className, idNovel, handlePrefixChange }) => {
     console.log(heart)
     const postDataToServerView = async () => {
       try {
-        const url = `http://localhost:3000/reviews/${dataCon.id}/${id}`;
+        const url = `http://localhost:3000/novel/${dataCon.id}/reviews/${id}`;
         const dataToSan = {
           details:inputReview,
           num_like:heart

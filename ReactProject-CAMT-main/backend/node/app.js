@@ -39,7 +39,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/user', basketRoute);
 app.use('/novels', novelRouter);
 app.use('/users', userRouter);
-app.use('/reviews', reviewRouter);
+app.use('/novel', reviewRouter);
 
 app.use('/users', ordersRouter);
 app.use('/auth', userRouter);
