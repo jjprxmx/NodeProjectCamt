@@ -8,6 +8,6 @@ router.post('/login', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    return service.checkCokkie(req, res);
+    return service.checkCookie(req, res);
 });   
 module.exports = router;   

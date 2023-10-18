@@ -2,7 +2,7 @@
 const {Sequelize} = require('sequelize');
 const {sequelize }= require('../config/database');
 
-const Review = sequelize.define("reviews", 
+const Reviews = sequelize.define("reviews", 
 {     
   id_user: {
     type: Sequelize.INTEGER,
@@ -11,12 +11,21 @@ const Review = sequelize.define("reviews",
     type: Sequelize.INTEGER,
   },
   details: {
-    type: Sequelize.TEXT,
+    type: Sequelize.STRING,
   },
   num_like: {
     type: Sequelize.INTEGER,
   },
+  createdAt: {
+    type: Sequelize.DATE,
+    allowNull: false,
+  },
+  updatedAt: {
+    type: Sequelize.DATE,
+    allowNull: false
+  }
+  
 });
 
 
-module.exports = Review;
+module.exports = Reviews;

@@ -62,7 +62,7 @@ const NovelPage = ({ className, idNovel, handlePrefixChange }) => {
     console.log(heart)
     const postDataToServerView = async () => {
       try {
-        const url = `http://localhost:3000/novel/${dataCon.id}/reviews/${id}`;
+        const url = `http://localhost:3000/novel/`;
         const dataToSan = {
           details:inputReview,
           num_like:heart
@@ -147,7 +147,7 @@ const NovelPage = ({ className, idNovel, handlePrefixChange }) => {
   }
 
   useEffect(()=> {
-    fetch((`http://localhost:3000/api/user/Review/${id}`),{    
+    fetch((`http://localhost:3000/novel/${id}/Reviews`),{    
       method:"GET",                                     
   })
   .then(response => response.json())

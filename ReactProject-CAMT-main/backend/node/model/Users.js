@@ -24,6 +24,7 @@ const Users = sequelize.define("users",
   pic: {
     type: DataTypes.STRING,
   },
+  
 });
 
 module.exports = Users;
