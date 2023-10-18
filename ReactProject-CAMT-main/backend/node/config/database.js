@@ -6,7 +6,8 @@ const sequelize = new Sequelize(
     'nodeproject9999', // Password
     {
       host: '61.7.143.204', // Connect to your local database otherwise use 61.7.143.204
-      dialect: 'mysql' // Tell sequelize to use Postgres
+      dialect: 'mysql', // Tell sequelize to use Postgres
+      port: 3306
     }
   );
 

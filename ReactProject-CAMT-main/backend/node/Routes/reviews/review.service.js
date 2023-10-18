@@ -1,25 +1,27 @@
 const express = require('express');
 const router = express.Router();
-const {Review} = require('../../model/Review');
+const Reviews = require('../../model/Review');
 
 async function getReview (req,res){
-    res.send(Review.id_novel)
+    const reviews = await Reviews.findAll();
+    res.status(200).json(reviews);
 }
 
 
 async function getReviewbyidnovel(req, res) {
-  const review = await Review.findAll({
+  const idNovel = req.params.id;
+
+  const review = await Reviews.findOne({
     where:{
-        id_novel:req.params.id,
-        details:req.params.idReview
+        id_novel:idNovel,
     }
   });
-  res.send(review.detail);
+  res.status(200).json({details :review.details});
 }
 
 async function createReview(req, res) {
     const { id_user, id_novel, details, num_like } = req.body;
-      const newReview = await Review.create({
+      const newReview = await Reviews.create({
         id_user,
         id_novel,
         details,
