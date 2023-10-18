@@ -6,7 +6,7 @@ router.get ('/',(req,res) => {
     return service.getReview(req,res)
 })
 
-router.get('/:id/Reviews', (req, res) => {
+router.get('/:id/reviews', (req, res) => {
   return service.getReviewbyidnovel(req,res);
 });
 

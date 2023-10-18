@@ -60,7 +60,7 @@ function RegisterArthor({ className }) {
   
     try {
       // สร้างผู้ใช้และรับข้อมูลผู้ใช้ที่สร้างกลับมา
-      const createUserResponse = await axios.post("/users/bank", {
+      const createUserResponse = await axios.post("http://localhost:3000/users/login", {
         email: email,
         username: username,
         password: password,
