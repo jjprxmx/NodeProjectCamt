@@ -132,20 +132,37 @@ const NovelPage = ({ className, idNovel, handlePrefixChange }) => {
   // };
   const basketSubmit = () => {
     const postDataToServerOrder = async () => {
-      try {
-        const url = `http://localhost:3000/orders/basket/${dataCon.id}/${id}`;
-        const response = await axios.post(url);
-
-        console.log("คำขอ POST สำเร็จ:", response.data);
-        alert("review create")
+        try {
+          const url = `http://localhost:3000/user/`;
+          const dataToSend = {
+            id_user:dataCon.id,
+            id_novel:id
+                };
+          const response = await axios.post(url, dataToSend);
+          //setData(response.data);
+  
+          console.log("คำขอ POST สำเร็จ:", response.data);
+        alert("คุณลูกค้าได้เพิ่มไปในตระกล้าแล้ว")
       } catch (error) {
         console.error("เกิดข้อผิดพลาดในการส่งคำขอ POST ข้อมูลธนาคาร:", error);
-        alert("คุณลูกค้าได้เพิ่มไปในตระกล้าแล้ว")
+        alert("err")
       }
     };
 
     // เรียกใช้งานฟังก์ชันสำหรับการส่งคำขอ POST ข้อมูลธนาคาร
     postDataToServerOrder();
+  }
+  const addTomycol = async () => {
+      try {
+        const url = `http://localhost:3000/order/${dataCon.id}/novel/${id}`;
+        const response = await axios.post(url);
+
+        console.log("คำขอ POST สำเร็จ:", response.data);
+      } catch (error) {
+        console.error("เกิดข้อผิดพลาดในการส่งคำขอ POST ข้อมูลธนาคาร:", error);
+       
+       alert("คุณลูกค้าได้เพิ่มไปในตระกล้าแล้ว")
+      }
   }
 
   useEffect(()=> {
@@ -160,6 +177,7 @@ const NovelPage = ({ className, idNovel, handlePrefixChange }) => {
   console.log( )
   })
 },[loading])
+
 
   return (
     <div className={className}>
@@ -200,9 +218,9 @@ const NovelPage = ({ className, idNovel, handlePrefixChange }) => {
               <div className="total-button">
                 <Button value="ทดลองอ่าน" className="button-buy" />
                 <Button
-                  value={`ซื้อ ${data.coverPrice} บาท`}
+                  value={`ซื้อ ${data.price} บาท`}
                   className="button-buy"
-                />
+                  onClick={() => addTomycol()}/>
               </div>
 
               <div className="rating">
@@ -309,7 +327,7 @@ const NovelPage = ({ className, idNovel, handlePrefixChange }) => {
                 placeholder="เริ่มการรีวิวได้เลยจ้า"
                 value={inputReview}
                 onChange={handleInputChange}
-                width="703px"
+                width="720px"
               />
               <div className="button-review">
                 <Button value="ส่งรีวิว" onClick={reviewSubmit}/>
@@ -408,9 +426,9 @@ export default styled(NovelPage)`
 
   .photo-novel img {
     width: 200px;
-    height: 230px;
+    height: 300px;
     object-fit: cover;
-    margin-left: 20%;
+    margin-left: 11%;
   }
   .promotion {
     width: 200px;

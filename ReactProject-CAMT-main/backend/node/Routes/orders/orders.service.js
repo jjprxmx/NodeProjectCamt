@@ -31,20 +31,21 @@ async function getOrdersById(req, res) {
 
 async function addOrder(req, res) {
     try {
-        const { id_user, id_novel } = req.body;
-        const orders = await Orders.create({
+        const {
+            iduser:id_user,
+            idnovel:id_novel
+        } = req.params;
+    
+        const Order = await Orders.create({
             id_user,
             id_novel
-        })
-        if (!orders) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-        res.status(200).json(orders);
-
-    } catch (error) {
-        console.error('Error:', error);
-        res.status(500).json(err);
-    }
+        });
+    
+        res.status(201).json(Order);
+      } catch (error) {
+        console.error("Error creating novel:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+      }
 
 }
 

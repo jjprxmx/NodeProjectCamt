@@ -16,7 +16,7 @@ const MyCollection = ({ className }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const ordersResponse = await fetch(`http://localhost:3000/users/${dataCon.id}/Orders`);
+        const ordersResponse = await fetch(`http://localhost:3000/order/${dataCon.id}/`);
         const ordersData = await ordersResponse.json();
 
         const novelPromises = ordersData.map(async (element) => {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Popup from "../SubComponent/Popup";
 import Input from "../SubComponent/Input";
 import Button from "../SubComponent/Button";
@@ -20,13 +20,15 @@ function RegisterArthor({ className }) {
   const [password, setPassword] = useState("");
   const [passwordRetype, setPasswordRetype] = useState("");
   const [email, setEmail] = useState("");
-  const [displayName, setDisplayName] = useState("");
+  const [Namee, setNamee] = useState("");
   const [gender, setGender] = useState("");
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
-  const [idcard, setIdcard] = useState("");
+  const [idcard, setIdcard] = useState(0);
   const [numbank, setNumbank] = useState("");
   const [namebank, setNamebank] = useState("");
+  const [idSeller, setidSeller] = useState(0);
+  const [identity, setidentity] = useState("");
 
   const popupOpen = useSelector((state) => state.login.register2);
   const dispatch = useDispatch();
@@ -49,7 +51,7 @@ function RegisterArthor({ className }) {
     console.log(password);
     console.log(passwordRetype);
     console.log(gender);
-    console.log(displayName);
+    console.log(Namee);
   
     if (password !== passwordRetype) {
       alert("password doesn't match");
@@ -60,27 +62,33 @@ function RegisterArthor({ className }) {
   
     try {
       // สร้างผู้ใช้และรับข้อมูลผู้ใช้ที่สร้างกลับมา
-      const createUserResponse = await axios.post("http://localhost:3000/users/login", {
+      const createUserResponse = await axios.post("http://localhost:3000/auth/register", {
         email: email,
         username: username,
         password: password,
         gender: gender,
-        display_name: displayName,
+        name:Namee,
         level: 1,
       });
   
       const createdUser = createUserResponse.data;
   
       console.log("คำขอ POST สำเร็จ:", createdUser);
-  
+
+        console.log()
+        console.log(typeof createdUser.id)
+        setidSeller(createdUser.id)
+        setidentity(name+surname)
+        console.log(identity)
       // ทำการ POST ข้อมูลธนาคารด้วย ID ของผู้ใช้ที่สร้าง
       const postDataToServerBank = async () => {
         try {
           const url = `http://localhost:3000/userseller/`;
           const dataToSan = {
+            seller_id:idSeller,
             bank_account_number: numbank,
             id_card_number: idcard,
-            identity: name + " " + surname,
+            identity,
             namebank: namebank,
           };
           const response = await axios.post(url, dataToSan);
@@ -210,8 +218,8 @@ function RegisterArthor({ className }) {
                       <Input
                         type="text"
                         placeholder="Display Name"
-                        value={displayName}
-                        onChange={(e) => setDisplayName(e.target.value)}
+                        value={Namee}
+                        onChange={(e) => setNamee(e.target.value)}
                         size={"560px"}
                       />
                     </div>

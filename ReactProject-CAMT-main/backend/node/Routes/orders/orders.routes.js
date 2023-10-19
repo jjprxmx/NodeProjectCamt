@@ -8,11 +8,11 @@ router.get ('/',(req,res) => {
 
 });
 
-router.get ('/:id/Orders' , (req,res) =>{
+router.get ('/:id/' , (req,res) =>{
     return service.getOrdersById(req, res);
 });
 
-router.post ('/' , (req,res) =>{
+router.post ('/:iduser/novel/:idnovel' , (req,res) =>{
     return service.addOrder(req, res);
 });
 

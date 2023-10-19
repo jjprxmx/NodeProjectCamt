@@ -2,7 +2,7 @@ import GrayBackground from "./GrayBackground";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-regular-svg-icons'
 import { styled } from 'styled-components';
-import { useEffect, useState,useContext } from "react";
+import { useContext } from "react";
 import {userContext} from "../../App";
 import Button from "./Button";
 import PropTypes from "prop-types";
@@ -11,15 +11,27 @@ const SelectForPay = (props) => {
   const {dataCon, setDataCon}= useContext(userContext)
     const {className} = props
     const idel=props.props.id
-    const del = (id)=>{
-        fetch((`http://localhost:3000/user/${dataCon.id}/basket/${id}`),{    
-              method:"Delete",                                     
+
+    const del = async (id) => {
+      try {
+        const res = await fetch(`http://localhost:3000/user/${dataCon.id}/basket/${id}`, {
+          method: "DELETE",
         })
-          .then(response => response.json())
-          .then(data => {
-                props.setContent()
-        })
+
+        if (!res.ok) {
+          throw new Error(`Failed to delete item with id ${id}`);
         }
+    
+        const data = await res.json();
+        console.log("from Select"+data)
+        props.setContent();
+      } catch (error) {
+        console.log("from Select Err")
+        console.error(error);
+        // Handle the error as needed
+      }
+    };
+    
     return (
    <div className={className} >
         <GrayBackground >   
