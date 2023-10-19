@@ -40,7 +40,6 @@ app.use('/user', basketRoute);
 app.use('/novels', novelRouter);
 app.use('/auth', userRouter);
 app.use('/novel', reviewRouter);
-app.use('/iduser', reviewRouter);
 app.use('/order', ordersRouter);
 
 app.use('/userseller', sellerRouter);
