@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { BrowserRouter as Router ,Route, Link } from "react-router-dom";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
@@ -217,10 +218,11 @@ const NovelPage = ({ className, idNovel, handlePrefixChange }) => {
               </div>
               <div className="total-button">
                 <Button value="ทดลองอ่าน" className="button-buy" />
+                <Link to="/payment">
                 <Button
                   value={`ซื้อ ${data.price} บาท`}
                   className="button-buy"
-                  onClick={() => addTomycol()}/>
+                  onClick={() => addTomycol()}/> </Link>
               </div>
 
               <div className="rating">
