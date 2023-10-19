@@ -33,7 +33,7 @@ function RegisterArthor({ className }) {
   const popupOpen = useSelector((state) => state.login.register2);
   const dispatch = useDispatch();
 
-  const Api_Novel = `http://localhost:3000/userseller/`;
+  const Api_Novel = `http://localhost:3000/seller/`;
   const { data } = useFetch(Api_Novel);
   // Set Popup
   const togglePopup = () => {
@@ -83,7 +83,7 @@ function RegisterArthor({ className }) {
       // ทำการ POST ข้อมูลธนาคารด้วย ID ของผู้ใช้ที่สร้าง
       const postDataToServerBank = async () => {
         try {
-          const url = `http://localhost:3000/userseller/`;
+          const url = `http://localhost:3000/seller/`;
           const dataToSan = {
             seller_id:idSeller,
             bank_account_number: numbank,

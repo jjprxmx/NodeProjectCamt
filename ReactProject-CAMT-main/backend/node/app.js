@@ -42,7 +42,7 @@ app.use('/auth', userRouter);
 app.use('/novel', reviewRouter);
 app.use('/order', ordersRouter);
 
-app.use('/userseller', sellerRouter);
+app.use('/seller', sellerRouter);
 //create server
 app.listen(3000, () => {
     console.log('Listening on port 3000');
