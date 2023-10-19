@@ -1,5 +1,6 @@
 const Novels = require("../../model/Novels");
-
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 async function findAllNovel(req, res) {
   const novels = await Novels.findAll();
   res.status(200).json(novels);
@@ -63,10 +64,14 @@ async function createNovel(req, res) {
 async function findNovelByName(req, res) {
   const nameToSearch = req.params.name; 
 
+  
   const novel = await Novels.findAll({
-    where: { name: nameToSearch }, 
+    where: {
+      name: {
+        [Op.like]: `%${nameToSearch}%`
+      }
+    }
   });
-
   if (novel) {
     res.status(200).json(novel); 
   } else {

@@ -7,7 +7,7 @@ const novelRouter = require('./Routes/novels/novels.routes');
 const userRouter = require('./Routes/users/user.routes');
 const reviewRouter = require('./Routes/reviews/review.routes');
 const ordersRouter = require('./Routes/orders/orders.routes');
-
+const sellerRouter = require('./Routes/seller/seller.routes');
 const {connect, sync} = require('./config/database');
 
 // const routes = require('./Routes');
@@ -43,6 +43,7 @@ app.use('/novel', reviewRouter);
 app.use('/iduser', reviewRouter);
 app.use('/order', ordersRouter);
 
+app.use('/userseller', sellerRouter);
 //create server
 app.listen(3000, () => {
     console.log('Listening on port 3000');

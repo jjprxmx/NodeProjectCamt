@@ -95,14 +95,17 @@ const AddBook = (className) => {
   const [imageURL, setImageURL] = useState("");
   const [type, setType] = useState("");
   const [cate, setCate] = useState("");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState(0);
   const [exam, setExam] = useState("");
   const [file, setFile] = useState("");
   const [data, setData] = useState("");
-  const [promotion,setPromotion] = useState('');
+  const [promotion,setPromotion] = useState(0);
   const [description,setDescription] = useState('');
   const [author,setAuthor] = useState('')
 
+  const [numpage, setNumpage] = useState(0);
+  const [rating, setRating] = useState(5);
+  const [cover_price, setCover_price] = useState(0);
   // function onSubmit(event) {
   //   event.preventDefault();
   //   AddBook({ name, type, imageURL, price, exam, file });
@@ -182,14 +185,16 @@ const AddBook = (className) => {
                 name: name,
                 price: price,
                 category: type,
+                numpage,
+                rating,
                 promotion:promotion,
                 file_pic: imageURL,
                 file_test: exam,
                 file_real: file,
-                 author:author,
-                description:description
-            
-               
+                release_date: new Date(),
+                author,
+                description,
+                cover_price
               };
         const response = await axios.post(url, dataToSend);
         //setData(response.data);
