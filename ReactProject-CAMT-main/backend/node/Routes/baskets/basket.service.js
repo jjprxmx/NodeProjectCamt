@@ -1,7 +1,4 @@
-const express = require('express');
-
 const Basket = require('../../model/Basket');
-const { data } = require('../../config/database');
 
 async function getAllBasket(req, res) {
     res.status(200).send(Basket);
